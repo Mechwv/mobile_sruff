@@ -12,5 +12,6 @@ data class WeatherApiResponse(
     val info: Info,
     @SerializedName("geo_object")
     val geoObject: GeoObject,
-    val fact: Fact
+    val fact: Fact,
+    val forecasts: List<Forecast>
 )
