@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import org.junit.Test
 
 import org.junit.Assert.*
+import java.io.File
 import java.time.Instant
 import java.util.*
 
@@ -402,5 +403,11 @@ class RandomUtilTests {
     """.trimIndent()
         val k = Gson().fromJson(b, WeatherApiResponse::class.java)
         println(k)
+    }
+
+    @Test
+    fun serialtestv2() {
+        val testData = File("src/main/res/v2testData.json").readText(Charsets.UTF_8)
+        println(testData)
     }
 }
