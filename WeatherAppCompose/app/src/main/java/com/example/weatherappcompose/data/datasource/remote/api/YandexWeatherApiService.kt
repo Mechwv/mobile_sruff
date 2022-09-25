@@ -11,8 +11,9 @@ interface YandexWeatherApiService {
     @Headers("X-Yandex-API-Key: ${BuildConfig.YANDEX_API_KEY}")
     @GET("forecast")
     suspend fun getWeather(
-        @Query("lat") key: String,
-        @Query("long") geocode: String,
+        @Query("lat") lat: Double,
+        @Query("long") long: Double,
+        @Query("limit") limit: Int = 3,
         @Query("hours") hours: String = "false",
         @Query("extra") extra: String = "false"
     ): Response<WeatherApiResponse>

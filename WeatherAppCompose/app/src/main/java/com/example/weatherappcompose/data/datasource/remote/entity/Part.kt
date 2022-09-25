@@ -6,7 +6,7 @@ data class Part(
     val wind_gust: Double,
     val pressure_mm: Int,
     val humidity: Int,
-    val cloudness: Int,
+    val cloudness: Double,
     val icon: String,
     val condition: String,
     val uv_index: Int,

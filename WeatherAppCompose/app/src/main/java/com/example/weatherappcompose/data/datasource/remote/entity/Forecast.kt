@@ -6,5 +6,5 @@ data class Forecast(
     val sunset: String,
     val rise_begin: String,
     val set_end: String,
-    val parts: List<Part>
+    val parts: WeatherTime
 )
