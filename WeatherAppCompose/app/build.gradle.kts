@@ -71,6 +71,14 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:${Deps.compose_version}")
     debugImplementation("androidx.compose.ui:ui-test-manifest:${Deps.compose_version}")
 
+    //I will name them someday
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("androidx.fragment:fragment-ktx:1.4.0")
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
+
     //Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
@@ -82,8 +90,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.1.0")
 
     //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-compiler:2.38.1")
+    implementation("com.google.dagger:hilt-android:${Deps.hilt_version}")
+    kapt("com.google.dagger:hilt-compiler:${Deps.hilt_version}")
 
     kapt("androidx.hilt:hilt-compiler:1.0.0")
 
@@ -103,4 +111,9 @@ dependencies {
 
     //Desugaring
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.1")
+
+    //Room
+    implementation("androidx.room:room-runtime:${Deps.room_version}")
+    implementation("androidx.room:room-ktx:${Deps.room_version}")
+    kapt("androidx.room:room-compiler:${Deps.room_version}")
 }
