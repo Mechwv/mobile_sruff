@@ -1,24 +1,16 @@
 package com.example.weatherappcompose.core.di
 
 import com.example.weatherappcompose.data.datasource.remote.api.YandexWeatherApiService
-import com.example.weatherappcompose.data.repository.WeatherRepositoryImpl
-import com.example.weatherappcompose.domain.repository.WeatherRepository
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityComponent::class)
-abstract class RemoteModule {
-
-//    @Binds
-//    abstract fun bindAnalyticsService(
-//        weatherRepositoryImpl: WeatherRepositoryImpl
-//    ): WeatherRepository
+@InstallIn(SingletonComponent::class)
+class RemoteModule {
 
     @Provides
     @Singleton

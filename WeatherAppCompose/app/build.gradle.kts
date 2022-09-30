@@ -45,6 +45,7 @@ android {
     }
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjvm-default=all-compatibility")
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         compose = true
