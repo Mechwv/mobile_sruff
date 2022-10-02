@@ -4,5 +4,5 @@ import com.example.weatherappcompose.data.datasource.remote.entity.WeatherApiRes
 import retrofit2.Response
 
 interface WeatherRepository {
-    suspend fun getWeather(lat: Double, long: Double, limit: Int): Response<WeatherApiResponse>
+    suspend fun getWeather(lat: Double, long: Double, limit: Int): Resource<WeatherApiResponse>
 }

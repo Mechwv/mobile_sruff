@@ -86,12 +86,13 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Deps.compose_version}")
 
     //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.1.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.1.0")
 
     //Dagger - Hilt
     implementation("com.google.dagger:hilt-android:${Deps.hilt_version}")
     kapt("com.google.dagger:hilt-compiler:${Deps.hilt_version}")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     kapt("androidx.hilt:hilt-compiler:1.0.0")
 
