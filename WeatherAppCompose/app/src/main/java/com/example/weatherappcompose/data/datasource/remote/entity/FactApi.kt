@@ -1,6 +1,8 @@
 package com.example.weatherappcompose.data.datasource.remote.entity
 
-data class Fact(
+import com.example.weatherappcompose.domain.model.Fact
+
+data class FactApi(
     val temp: Int,
     val feels_like: Int,
     val icon: String,
@@ -13,3 +15,10 @@ data class Fact(
     val uv_index: Int,
     val wind_gust: Double
 )
+
+fun FactApi.toModel(): Fact {
+    return Fact(
+        temp = this.temp
+    )
+}
+

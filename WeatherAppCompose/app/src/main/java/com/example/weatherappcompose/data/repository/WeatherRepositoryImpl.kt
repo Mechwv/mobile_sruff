@@ -14,10 +14,11 @@ class WeatherRepositoryImpl @Inject constructor(
         long: Double,
         limit: Int
     ): Response<WeatherApiResponse> {
-        return service.getWeather(
+        val apiWeather = service.getWeather(
             lat = lat,
             long = long,
             limit = limit,
         )
+//        return apiWeather.t
     }
 }

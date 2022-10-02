@@ -1,6 +1,9 @@
 package com.example.weatherappcompose.data.datasource.remote.entity
 
-data class Part(
+import com.example.weatherappcompose.domain.model.LocationItem
+import com.example.weatherappcompose.domain.model.Part
+
+data class PartApi(
     val temp: Int,
     val wind_speed: Double,
     val wind_gust: Double,
@@ -12,3 +15,9 @@ data class Part(
     val uv_index: Int,
     val feels_like: Double
 )
+
+fun PartApi.toModel(): Part {
+    return Part(
+        temp = this.temp
+    )
+}

@@ -1,4 +1,4 @@
-package com.example.weatherappcompose.data.datasource.remote.entity
+package com.example.weatherappcompose.domain.model
 
 data class WeatherTime(
     val morning: Part,

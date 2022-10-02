@@ -1,17 +1,23 @@
 package com.example.weatherappcompose.data.datasource.remote.entity
 
-import com.google.gson.Gson
+import com.example.weatherappcompose.domain.model.Weather
 import com.google.gson.annotations.SerializedName
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 data class WeatherApiResponse(
     val now_dt: String,
-    val info: Info,
+    val info: InfoApi,
     @SerializedName("geo_object")
-    val geoObject: GeoObject,
-    val fact: Fact,
-    val forecasts: List<Forecast>
+    val geoObjectApi: GeoObjectApi,
+    val factApi: FactApi,
+    val forecastApis: List<ForecastApi>
 )
+
+fun WeatherApiResponse.toModel(): Weather {
+    return Weather(
+        now_dt = this.now_dt,
+        info = this.info.toModel(),
+        geoObject = this.geoObjectApi.toModel(),
+        fact = this.factApi.toModel(),
+        forecasts = this.forecastApis.map { it.toModel() },
+    )
+}
