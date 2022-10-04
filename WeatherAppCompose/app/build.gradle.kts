@@ -59,6 +59,9 @@ android {
         }
     }
     hilt { enableAggregatingTask = true }
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
 
 dependencies {
@@ -68,6 +71,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:${Deps.compose_version}")
 
     implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.compose.material:material:${Deps.compose_version}")
     debugImplementation("androidx.compose.ui:ui-tooling:${Deps.compose_version}")
     debugImplementation("androidx.compose.ui:ui-test-manifest:${Deps.compose_version}")
 
@@ -107,6 +111,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
 
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    kapt("com.github.bumptech.glide:compiler:4.12.0")
+
     //Material
     implementation("androidx.compose.material3:material3:1.0.0-alpha01")
 
@@ -117,4 +125,8 @@ dependencies {
     implementation("androidx.room:room-runtime:${Deps.room_version}")
     implementation("androidx.room:room-ktx:${Deps.room_version}")
     kapt("androidx.room:room-compiler:${Deps.room_version}")
+
+    // JUnit 5
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.2.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.2.0")
 }

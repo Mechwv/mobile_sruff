@@ -1,8 +1,6 @@
 package com.example.weatherappcompose.domain.model
 
 data class WeatherTime(
-    val morning: Part,
-    val day: Part,
-    val evening: Part,
-    val night: Part,
+    val day_short: Part,
+    val night_short: Part,
 )

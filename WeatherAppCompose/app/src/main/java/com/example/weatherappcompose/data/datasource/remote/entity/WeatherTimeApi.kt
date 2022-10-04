@@ -7,13 +7,13 @@ data class WeatherTimeApi(
     val day: PartApi,
     val evening: PartApi,
     val night: PartApi,
+    val night_short: PartApi,
+    val day_short: PartApi,
 )
 
 fun WeatherTimeApi.toModel(): WeatherTime {
     return WeatherTime(
-        morning = this.morning.toModel(),
-        day = this.day.toModel(),
-        evening = this.evening.toModel(),
-        night = this.night.toModel(),
+        day_short = this.day_short.toModel(),
+        night_short = this.night_short.toModel(),
     )
 }

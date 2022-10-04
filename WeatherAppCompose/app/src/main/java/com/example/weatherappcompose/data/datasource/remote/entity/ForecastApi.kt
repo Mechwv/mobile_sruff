@@ -14,6 +14,7 @@ data class ForecastApi(
 
 fun ForecastApi.toModel(): Forecast {
     return Forecast(
-        date = this.date
+        date = this.date,
+        parts = parts.toModel()
     )
 }

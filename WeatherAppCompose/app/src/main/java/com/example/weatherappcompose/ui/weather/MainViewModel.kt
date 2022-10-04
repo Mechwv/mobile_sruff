@@ -1,16 +1,13 @@
 package com.example.weatherappcompose.ui.weather
 
-import android.app.Application
-import android.view.View
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherappcompose.R
-import com.example.weatherappcompose.data.datasource.CoroutineDispatcherProvider
 import com.example.weatherappcompose.data.datasource.remote.entity.toModel
 import com.example.weatherappcompose.domain.model.Weather
 import com.example.weatherappcompose.domain.repository.Resource
 import com.example.weatherappcompose.domain.repository.WeatherRepository
+import com.example.weatherappcompose.domain.usecase.weather.GetWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: WeatherRepository,
+    private val weatherUseCase: GetWeatherUseCase,
 //    private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {
 
@@ -38,7 +35,7 @@ class MainViewModel @Inject constructor(
         //Post loading state
         _uiState.value = WeatherUiState.Loading
 
-        val weather = repository.getWeather(
+        val weather = weatherUseCase(
             lat = MOSCOW_LAT,
             long = MOSCOW_LONG,
             limit = 1
@@ -49,20 +46,30 @@ class MainViewModel @Inject constructor(
                 weather.data!!.toModel()
             )
         } else {
-            _uiState.value = WeatherUiState.Error(
-               message = "Ошибка"
-            )
+            onErrorOccurred()
         }
         // Posting success response
         // as it becomes ready
 
     }
 
+    private fun onQueryLimitReached() {
+        _uiState.value = WeatherUiState.Error(
+            R.string.query_limit_reached
+        )
+    }
+
+    private fun onErrorOccurred() {
+        _uiState.value = WeatherUiState.Error(
+            R.string.something_went_wrong
+        )
+    }
+
     sealed class WeatherUiState {
         object Empty : WeatherUiState()
         object Loading : WeatherUiState()
         class Loaded(val data: Weather) : WeatherUiState()
-        class Error(val message: String) : WeatherUiState()
+        class Error(val message: Int) : WeatherUiState()
     }
 
     companion object {

@@ -2,10 +2,11 @@ package com.example.weatherappcompose
 
 import com.example.weatherappcompose.data.datasource.remote.entity.WeatherApiResponse
 import com.example.weatherappcompose.data.datasource.remote.entity.toModel
+import com.example.weatherappcompose.domain.model.Weather
 import com.google.gson.Gson
-import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.jupiter.api.Test
 import java.io.File
 import java.time.Instant
 import java.util.*
@@ -32,10 +33,17 @@ class RandomUtilTests {
     }
 
     @Test
-    fun serialToModel() {
+    fun serialToModel(): Weather {
         //since the tests can be read from JSON all large tests now should be in assets folder
         val testData = File("src/main/assets/testdata/v2testData.json").readText(Charsets.UTF_8)
         val k = Gson().fromJson(testData, WeatherApiResponse::class.java)
-        k.toModel()
+        return k.toModel()
+    }
+
+    @Test
+    fun forecastTemp() {
+        val testData = File("src/main/assets/testdata/v2testData.json").readText(Charsets.UTF_8)
+        val k = Gson().fromJson(testData, WeatherApiResponse::class.java).toModel().forecasts
+        println(k)
     }
 }

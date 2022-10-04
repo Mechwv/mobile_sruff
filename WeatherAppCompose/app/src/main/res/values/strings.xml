@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WeatherAppCompose</string>
+    <string name="no_data_available">Нет данных</string>
+    <string name="day_temp">Нет данных</string>
+    <string name="problem_occurred">Произошла ошибка</string>
+    <string name="query_limit_reached">Лимит запросов</string>
+    <string name="something_went_wrong">Произошла ошибка</string>
 </resources>
