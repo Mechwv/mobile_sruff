@@ -92,6 +92,7 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.1.0")
+    implementation("joda-time:joda-time:2.10.13")
 
     //Dagger - Hilt
     implementation("com.google.dagger:hilt-android:${Deps.hilt_version}")
