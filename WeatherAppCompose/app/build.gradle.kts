@@ -130,4 +130,8 @@ dependencies {
     // JUnit 5
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.2.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.2.0")
+
+    //I WILL UNDERSTAND THIS LATER
+    implementation("com.github.JamalMulla:ComposePrefs3:1.0.2") // Current is 1.0.2
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }
