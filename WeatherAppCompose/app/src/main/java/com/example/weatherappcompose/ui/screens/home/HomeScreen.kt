@@ -1,4 +1,4 @@
-package ru.mosit.weatherapp.presentation.screens.home
+package com.example.weatherappcompose.ui.screens.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -15,7 +15,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.weatherappcompose.ui.screens.home.HomeViewModel
 import com.example.weatherappcompose.ui.screens.home.view.*
-import ru.mosit.weatherapp.presentation.screens.home.view.*
 
 @Suppress("KotlinConstantConditions")
 @Composable
@@ -46,18 +45,18 @@ fun HomeScreen(
             ) {
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     MainTemperatureComponent(
-                        tempValue = it.currentWeather,
-                        tempMin = it.lowestTemperature,
-                        tempMax = it.maxTemperature,
-                        weatherInfo = it.currentWeatherDescription
+                        tempValue = it.fact.temp.toDouble(),
+                        tempMin = it.fact.temp.toDouble(),
+                        tempMax = it.fact.temp.toDouble(),
+                        weatherInfo = it.fact.condition,
                     )
                 }
-                item(span = { GridItemSpan(maxLineSpan) }) { HourlyCard(hoursInfo = it.hours) }
-                item(span = { GridItemSpan(maxLineSpan) }) { DailyCard(it.days) }
-                item { HumidityCard(humidity = it.humidity, dewPoint = it.dewPoint) }
-                item { VisibilityCard(visibility = it.visibility) }
-                item { UvIndexCard(uvIndex = it.uvIndex) }
-                item { WindCard(windSpeed = it.windSpeed) }
+//                item(span = { GridItemSpan(maxLineSpan) }) { HourlyCard(hoursInfo = it.hours) }
+                item(span = { GridItemSpan(maxLineSpan) }) { DailyCard(it.forecasts) }
+                item { HumidityCard(humidity = it.fact.humidity.toDouble()) }
+//                item { VisibilityCard(visibility = it.visibility) }
+                item { UvIndexCard(uvIndex = it.fact.uv_index.toDouble()) }
+                item { WindCard(windSpeed = it.fact.wind_speed) }
                 item { Spacer(modifier = Modifier.size(6.dp)) }
             }
         } ?: run {

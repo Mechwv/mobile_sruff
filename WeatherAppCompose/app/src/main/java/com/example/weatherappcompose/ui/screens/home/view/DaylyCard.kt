@@ -18,16 +18,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.weatherappcompose.domain.model.Forecast
+import com.example.weatherappcompose.domain.model.Part
 import com.example.weatherappcompose.ui.components.CardHeader
 import com.example.weatherappcompose.ui.components.CardType
 import com.example.weatherappcompose.ui.components.CardView
 import org.joda.time.DateTimeZone
 import org.joda.time.Instant
 import org.joda.time.format.DateTimeFormat
-import ru.mosit.weatherapp.domain.model.WeatherDayDto
-import ru.mosit.weatherapp.presentation.components.CardHeader
-import ru.mosit.weatherapp.presentation.components.CardType
-import ru.mosit.weatherapp.presentation.components.CardView
 import java.util.*
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
@@ -35,17 +33,18 @@ import kotlin.math.roundToLong
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun DailyCard(
-    daysInfo: List<WeatherDayDto>
+    daysInfo: List<Forecast>
 ) {
 
     //TODO FIX THIS SHIT
-    val data = MutableList(5) { mutableListOf<Long>() }
+    val data = MutableList(5) { mutableListOf<String>() }
     daysInfo.forEach { dayInfo ->
-        data[0].add(dayInfo.dateTime)
-        data[1].add(dayInfo.weatherIcons.staticIcon.toLong())
-        data[2].add(dayInfo.temperature.roundToLong())
-        data[3].add(dayInfo.minTemperature.roundToLong())
-        data[4].add(dayInfo.maxTemperature.roundToLong())
+        data[0].add(dayInfo.date)
+//        data[1].add(dayInfo.weatherIcons.staticIcon.toLong())
+        data[1].add(dayInfo.parts.day_short.temp.toString())
+        data[2].add(dayInfo.parts.night_short.temp.toString())
+//        data[3].add(dayInfo. .roundToLong())
+//        data[4].add(dayInfo.maxTemperature.roundToLong())
     }
 
     val mainTextStyle = MaterialTheme.typography.bodyLarge.copy(
@@ -63,70 +62,9 @@ fun DailyCard(
         .withLocale(locale)
 
     CardView() {
-//        LazyVerticalGrid(
-//            columns = GridCells.Fixed(4)
-//        ) {
         Column() {
             CardHeader(cardType = CardType.DAILY)
-//            item(span = { GridItemSpan(maxLineSpan)} ){ CardHeader(cardType = CardType.DAILY) }
-//            Row(
-//                modifier = Modifier.fillMaxWidth(),
-//                horizontalArrangement = Arrangement.SpaceBetween
-//            ) {
-//                Column(
-//                    horizontalAlignment = Alignment.Start
-//                ) {
-//                    data[0].forEach { date ->
-//                        val dateStr = Instant.ofEpochSecond(date).toString(
-//                            DateTimeFormat.forPattern("dd.MM")
-//                                .withZone(DateTimeZone.forID("Europe/Moscow"))
-//                        )
-//
-//                        Text(
-//                            text = dateStr,
-//                            style = mainTextStyle,
-//                        )
-//                    }
-//                }
-//
-//                Column(
-//                    horizontalAlignment = Alignment.Start
-//                ) {
-//                    data[1].forEach { iconId ->
-//                        Icon(
-//                            modifier = Modifier.size(30.dp),
-//                            painter = painterResource(id = iconId.toInt()),
-//                            tint = Color.Unspecified,
-//                            contentDescription = null
-//                        )
-//                    }
-//                }
-//
-//                Column(
-//                    horizontalAlignment = Alignment.End
-//                ) {
-//                    data[2].forEach { temp ->
-//                        Text(
-//                            text = "${temp}°",
-//                            style = mainTextStyle
-//                        )
-//                    }
-//                }
-//
-//                Column(
-//                    horizontalAlignment = Alignment.End,
-//                    verticalArrangement = Arrangement.SpaceBetween,
-//                    modifier = Modifier.fillMaxHeight()
-//                ) {
-//                    for (i in 0 until data[3].size) {
-//                        Text(
-//                            text = "Мин. ${data[3][i]} " +
-//                                    "Макс. ${data[4][i]}",
-//                            style = MaterialTheme.typography.bodyLarge
-//                        )
-//                    }
-//                }
-//            }
+
             daysInfo.forEach { dayInfo ->
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -136,19 +74,19 @@ fun DailyCard(
                         .padding(horizontal = 0.dp, vertical = 5.dp)
                 ) {
 
-                    val dateInstant = Instant.ofEpochSecond(dayInfo.dateTime)
-                    val dateStr = dateInstant.toString(dateTimeFormat)
+//                    val dateInstant = Instant.ofEpochSecond(dayInfo.dateTime)
+//                    val dateStr = dateInstant.toString(dateTimeFormat)
 
-                    Column() {
-                        Text(
-                            text = dateInstant.toString(wdTimeFormat),
-                            style = mainTextStyle
-                        )
-                        Text(
-                            text = dateStr,
-                            style = mainTextStyle,
-                        )
-                    }
+//                    Column() {
+//                        Text(
+//                            text = dateInstant.toString(wdTimeFormat),
+//                            style = mainTextStyle
+//                        )
+//                        Text(
+//                            text = dateStr,
+//                            style = mainTextStyle,
+//                        )
+//                    }
 
                     Column(
                         horizontalAlignment = Alignment.End
@@ -157,53 +95,34 @@ fun DailyCard(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "${dayInfo.temperature.roundToInt()}°",
+                                text = "${dayInfo.date} ",
                                 style = mainTextStyle
                             )
-                            Icon(
-                                modifier = Modifier.size(30.dp),
-                                painter = painterResource(id = dayInfo.weatherIcons.staticIcon),
-                                tint = Color.Unspecified,
-                                contentDescription = "${dateStr}Icon"
+                            Text(
+                                text = "Днем: ${dayInfo.parts.day_short.temp}°",
+                                style = mainTextStyle
                             )
+                            Text(
+                                text = "Ночью: ${dayInfo.parts.day_short.temp}°",
+                                style = mainTextStyle
+                            )
+//                            Icon(
+//                                modifier = Modifier.size(30.dp),
+//                                painter = painterResource(id = dayInfo.weatherIcons.staticIcon),
+//                                tint = Color.Unspecified,
+//                                contentDescription = "${dateStr}Icon"
+//                            )
                         }
 
-                        Text(
-                                text = "Мин. ${dayInfo.minTemperature.roundToInt()} " +
-                                        "Макс. ${dayInfo.maxTemperature.roundToInt()}",
-                        style = MaterialTheme.typography.bodyLarge
-                        )
+//                        Text(
+//                                text = "Мин. ${dayInfo.minTemperature.roundToInt()} " +
+//                                        "Макс. ${dayInfo.maxTemperature.roundToInt()}",
+//                        style = MaterialTheme.typography.bodyLarge
+//                        )
+//                    }
                     }
                 }
             }
-
-//                items(daysInfo) { dayInfo ->
-//                    val dateStr = Instant.ofEpochSecond(dayInfo.dateTime).toString(
-//                        DateTimeFormat.forPattern("dd.MM")
-//                            .withZone(DateTimeZone.forID("Europe/Moscow"))
-//                    )
-//
-//                    Text(
-//                        text = dateStr,
-//                        style = mainTextStyle,
-//                    )
-//                    Icon(
-//                        modifier = Modifier.size(30.dp),
-//                        painter = painterResource(id = dayInfo.weatherIcons.staticIcon),
-//                        tint = Color.Unspecified,
-//                        contentDescription = "${dateStr}Icon"
-//                    )
-//                    Text(
-//                        text = "${dayInfo.temperature.roundToInt()}°",
-//                        style = mainTextStyle
-//                    )
-//                    Text(
-//                        text = "Мин. ${dayInfo.minTemperature.roundToInt()} " +
-//                                "Макс. ${dayInfo.maxTemperature.roundToInt()}",
-//                        style = MaterialTheme.typography.bodyLarge
-//                    )
-//                }
-//            }
         }
     }
 }

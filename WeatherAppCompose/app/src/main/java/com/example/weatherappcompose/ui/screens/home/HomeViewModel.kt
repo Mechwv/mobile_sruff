@@ -3,17 +3,19 @@ package com.example.weatherappcompose.ui.screens.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weatherappcompose.data.datasource.remote.entity.toModel
+import com.example.weatherappcompose.domain.repository.Resource
+import com.example.weatherappcompose.domain.usecase.weather.GetWeatherUseCase
+import com.example.weatherappcompose.ui.weather.MainViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import ru.mosit.weatherapp.domain.usecase.FetchWeatherByLocationUseCase
-import ru.mosit.weatherapp.presentation.screens.home.HomeViewState
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val fetchWeatherByLocationUseCase: FetchWeatherByLocationUseCase,
+    private val weatherUseCase: GetWeatherUseCase,
 ) : ViewModel() {
 
     //TODO FIX THIS SHIT
@@ -25,22 +27,23 @@ class HomeViewModel @Inject constructor(
 
     fun fetchWeather() {
         viewModelScope.launch {
-            fetchWeatherByLocationUseCase(55.757, 37.615)
-                .flowOn(Dispatchers.Default)
-                .onStart {
-                    Log.d("HomeViewModel", "Start")
-                    _state.value = HomeViewState(true, null)
-                }
-                .onCompletion { _state.value = HomeViewState(false, null) }
-                .catch { exception ->
-                    run {
-                        Log.e("HomeViewModel", "catch", exception)
-                        _state.value = HomeViewState(false, null)
-                    }
-                }
-                .collect { weather -> _state.value = HomeViewState(false,weather) }
+
+            _state.value = HomeViewState(true, null)
+
+            val weather = weatherUseCase(lat = MOSCOW_LAT, long = MOSCOW_LONG, limit = 5)
+
+            if (weather is Resource.Success) {
+                _state.value = HomeViewState(false, weather.data!!.toModel())
+            } else {
+                _state.value = HomeViewState(false, null)
+            }
         }
         Log.d("HomeViewModel", "fetchWeather")
+    }
+
+    companion object {
+        const val MOSCOW_LONG = 37.618423
+        const val MOSCOW_LAT = 55.751244
     }
 
 

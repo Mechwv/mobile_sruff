@@ -14,7 +14,7 @@ import com.example.weatherappcompose.ui.components.CardView
 @Composable
 fun HumidityCard(
     humidity: Double,
-    dewPoint: Double,
+//    dewPoint: Double,
     modifier: Modifier = Modifier
 ) {
     CardView(modifier) {
@@ -26,10 +26,10 @@ fun HumidityCard(
                 text = "$humidity%",
                 style = MaterialTheme.typography.titleLarge
             )
-            Text(
-                text = "Точка росы находится на температуре $dewPoint°С",
-                style = MaterialTheme.typography.bodyLarge
-            )
+//            Text(
+//                text = "Точка росы находится на температуре $dewPoint°С",
+//                style = MaterialTheme.typography.bodyLarge
+//            )
         }
     }
 }
@@ -38,6 +38,6 @@ fun HumidityCard(
 @Composable
 fun HumidityCardPreview() {
     MaterialTheme {
-        HumidityCard(24.0, 2.0)
+        HumidityCard(24.0)
     }
 }

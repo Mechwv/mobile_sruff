@@ -1,10 +1,10 @@
-package ru.mosit.weatherapp.presentation.screens.home
+package com.example.weatherappcompose.ui.screens.home
 
-import ru.mosit.weatherapp.domain.model.WeatherLocationDto
+import com.example.weatherappcompose.domain.model.Weather
 
 data class HomeViewState(
     val isLoading: Boolean = false,
-    val weatherLocation: WeatherLocationDto?
+    val weatherLocation: Weather?
 )
 
 //TODO FIX THIS SHIT

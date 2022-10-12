@@ -4,6 +4,6 @@ data class Weather(
     val now_dt: String = "",
     val info: Info,
     val geoObject: GeoObject,
-    val fact: Fact = Fact(),
+    val fact: Fact,
     val forecasts: List<Forecast>
 )

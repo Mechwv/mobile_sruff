@@ -18,7 +18,17 @@ data class FactApi(
 
 fun FactApi.toModel(): Fact {
     return Fact(
-        temp = this.temp
+        temp = this.temp,
+        feels_like = this.feels_like,
+        icon = this.icon,
+        condition = this.condition,
+        cloudness = this.cloudness,
+        is_thunder = this.is_thunder,
+        wind_speed = this.wind_speed,
+        pressure_mm = this.pressure_mm,
+        humidity = this.humidity,
+        uv_index = this.uv_index,
+        wind_gust = this.wind_gust,
     )
 }
 

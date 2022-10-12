@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import ru.mosit.weatherapp.presentation.screens.home.HomeScreen
+import com.example.weatherappcompose.ui.screens.home.HomeScreen
 import com.example.weatherappcompose.ui.screens.settings.SettingsScreen
 
 

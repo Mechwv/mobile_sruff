@@ -13,11 +13,20 @@ data class PartApi(
     val icon: String,
     val condition: String,
     val uv_index: Int,
-    val feels_like: Double
+    val feels_like: Double,
 )
 
 fun PartApi.toModel(): Part {
     return Part(
-        temp = this.temp
+        temp = this.temp,
+        wind_speed = this.wind_speed,
+        wind_gust = this.wind_gust,
+        pressure_mm = this.pressure_mm,
+        humidity = this.humidity,
+        cloudness = this.cloudness,
+        icon = this.icon,
+        condition = this.condition,
+        uv_index = this.uv_index,
+        feels_like = this.feels_like,
     )
 }

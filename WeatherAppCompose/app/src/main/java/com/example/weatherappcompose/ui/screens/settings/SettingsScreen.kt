@@ -8,10 +8,10 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import com.example.weatherappcompose.dataStore
 import com.jamal.composeprefs3.ui.PrefsScreen
 import com.jamal.composeprefs3.ui.prefs.CheckBoxPref
 import com.jamal.composeprefs3.ui.prefs.EditTextPref
-import ru.mosit.weatherapp.dataStore
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
