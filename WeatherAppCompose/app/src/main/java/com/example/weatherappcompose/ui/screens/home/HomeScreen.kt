@@ -47,8 +47,6 @@ fun HomeScreen(
         fontSize = 18.sp
     )
 
-
-
     Surface(
         modifier = Modifier
             .padding(padding)
@@ -63,7 +61,7 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 item(span = { GridItemSpan(maxLineSpan) }) {
-                    Text(text = it.geoObject.locality.name, style = mainTextStyle)
+                    Text(text = "${it.geoObject.locality.name} ", style = mainTextStyle)
                 }
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     MainTemperatureComponent(

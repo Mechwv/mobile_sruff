@@ -9,6 +9,6 @@ data class LocationItemApi(
 
 fun LocationItemApi?.toModel(): LocationItem {
     return LocationItem(
-        name = this?.name ?: ""
+        name = this?.name ?: "Неизвестно"
     )
 }
