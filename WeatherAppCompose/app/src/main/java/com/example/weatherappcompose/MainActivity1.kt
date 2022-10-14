@@ -57,7 +57,6 @@ class MainActivity1 : ComponentActivity() {
                 val (fabOnClick, setFabOnClick) = remember { mutableStateOf<(() -> Unit)?>(null) }
 
                 val currentRoute = backStackEntry?.destination?.route
-                SinglePermission()
                 Scaffold(
                     topBar = {
                         HomeTopBar(
@@ -124,6 +123,7 @@ class MainActivity1 : ComponentActivity() {
                     content = {
                         NavGraph(navController = navController, it, setFabOnClick)
                     })
+                SinglePermission()
 
 
             }
@@ -138,11 +138,11 @@ class MainActivity1 : ComponentActivity() {
         val permissionState =
             rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION)
         val lifecycleOwner = LocalLifecycleOwner.current
-
+//
         DisposableEffect(key1 = lifecycleOwner, effect = {
             val observer = LifecycleEventObserver { _, event ->
                 when (event) {
-                    Lifecycle.Event.ON_START -> {
+                    Lifecycle.Event.ON_CREATE -> {
                         permissionState.launchPermissionRequest()
                     }
                 }
@@ -166,11 +166,10 @@ class MainActivity1 : ComponentActivity() {
                 perm_state = false
             }
             !permissionState.hasPermission && !permissionState.shouldShowRationale -> {
-                permissionState.launchPermissionRequest()
+//                permissionState.launchPermissionRequest()
 //            Text(text = "Permission fully denied. Go to settings to enable")
             }
         }
         return false
     }
-
 }
