@@ -11,9 +11,9 @@ enum class CardType(val title: Int, val icon: Int) {
         title = R.string.wind,
         icon = R.drawable.ic_wind
     ),
-    VISIBILITY(
-        title = R.string.visibility,
-        icon = R.drawable.ic_visibility
+    PRESSURE(
+        title = R.string.pressure,
+        icon = R.drawable.ic_pressure
     ),
     UV_INDEX(
         title = R.string.uv_index,

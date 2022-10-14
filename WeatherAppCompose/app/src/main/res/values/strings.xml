@@ -10,7 +10,7 @@
 
     <string name="humidity">Влажность</string>
     <string name="wind">Ветер</string>
-    <string name="visibility">Видимость</string>
+    <string name="pressure">Давление</string>
     <string name="uv_index">УФ-Индекс</string>
     <string name="hourly">Почасовой прогноз</string>
     <string name="weekly">Прогноз на 7 дн</string>

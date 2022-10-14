@@ -12,8 +12,8 @@ import com.example.weatherappcompose.ui.components.CardType
 import com.example.weatherappcompose.ui.components.CardView
 
 @Composable
-fun VisibilityCard(
-    visibility: Double,
+fun PressureCard(
+    visibility: Int,
     modifier: Modifier = Modifier
 ) {
     CardView(modifier) {
@@ -21,9 +21,9 @@ fun VisibilityCard(
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Column {
-                CardHeader(cardType = CardType.VISIBILITY)
+                CardHeader(cardType = CardType.PRESSURE)
                 Text(
-                    text = "$visibility км",
+                    text = "$visibility мм",
                     style = MaterialTheme.typography.titleLarge
                 )
             }
@@ -34,5 +34,5 @@ fun VisibilityCard(
 @Preview
 @Composable
 fun VisibilityCardPreview() {
-    VisibilityCard(24.0)
+    PressureCard(24)
 }

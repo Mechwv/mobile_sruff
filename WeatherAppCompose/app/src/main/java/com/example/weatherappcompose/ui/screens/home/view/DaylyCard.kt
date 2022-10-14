@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -68,12 +69,12 @@ fun DailyCard(
                                 verticalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "${
-                                        date.dayOfWeek.getDisplayName(
-                                            TextStyle.FULL,
-                                            Locale("ru")
-                                        )
-                                    }",
+                                    text = date.dayOfWeek.getDisplayName(
+                                        TextStyle.FULL,
+                                        Locale("ru")
+                                    ).replaceFirstChar {
+                                        it.uppercase()
+                                    },
                                     style = mainTextStyle
                                 )
                                 Row(
@@ -84,12 +85,12 @@ fun DailyCard(
                                         style = mainTextStyle
                                     )
                                     Text(
-                                        text = "${
-                                            date.month.getDisplayName(
-                                                TextStyle.FULL,
-                                                Locale("ru")
-                                            )
-                                        }",
+                                        text = date.month.getDisplayName(
+                                            TextStyle.FULL,
+                                            Locale("ru")
+                                        ).replaceFirstChar {
+                                            it.uppercase()
+                                        },
                                         style = mainTextStyle
                                     )
                                 }
