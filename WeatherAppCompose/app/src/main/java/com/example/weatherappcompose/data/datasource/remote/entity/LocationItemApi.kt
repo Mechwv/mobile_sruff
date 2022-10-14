@@ -4,11 +4,11 @@ import com.example.weatherappcompose.domain.model.GeoObject
 import com.example.weatherappcompose.domain.model.LocationItem
 
 data class LocationItemApi(
-    val name: String
+    val name: String?
 )
 
-fun LocationItemApi.toModel(): LocationItem {
+fun LocationItemApi?.toModel(): LocationItem {
     return LocationItem(
-        name = this.name
+        name = this?.name ?: ""
     )
 }

@@ -16,7 +16,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -40,6 +42,11 @@ fun HomeScreen(
 
     val viewState by viewModel.state.collectAsState()
 
+    val mainTextStyle = MaterialTheme.typography.bodyLarge.copy(
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp
+    )
+
 
 
     Surface(
@@ -55,6 +62,9 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.spacedBy(6.dp),
                 horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    Text(text = it.geoObject.locality.name, style = mainTextStyle)
+                }
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     MainTemperatureComponent(
                         tempValue = it.fact.temp.toDouble(),
@@ -126,19 +136,19 @@ fun SinglePermission(){
         }
     })
 
-    when {
-        permissionState.hasPermission -> {
-            Text(text = "Location permission is granted")
-        }
-        permissionState.shouldShowRationale -> {
-            Column {
-                Text(text = "Location permission is required by this app")
-            }
-        }
-        !permissionState.hasPermission && !permissionState.shouldShowRationale -> {
-            Text(text = "Permission fully denied. Go to settings to enable")
-        }
-    }
+//    when {
+//        permissionState.hasPermission -> {
+//            Text(text = "Location permission is granted")
+//        }
+//        permissionState.shouldShowRationale -> {
+//            Column {
+//                Text(text = "Location permission is required by this app")
+//            }
+//        }
+//        !permissionState.hasPermission && !permissionState.shouldShowRationale -> {
+//            Text(text = "Permission fully denied. Go to settings to enable")
+//        }
+//    }
 
 
 }

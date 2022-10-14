@@ -22,7 +22,7 @@ class WeatherRepositoryImpl @Inject constructor(
         return safeApiCall {
             service.getWeather(
                 lat = lat,
-                long = long,
+                lon = long,
                 limit = limit,
             )
         }

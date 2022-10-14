@@ -12,7 +12,7 @@ interface YandexWeatherApiService {
     @GET("forecast")
     suspend fun getWeather(
         @Query("lat") lat: Double,
-        @Query("long") long: Double,
+        @Query("lon") lon: Double,
         @Query("limit") limit: Int = 3,
         @Query("hours") hours: String = "false",
         @Query("extra") extra: String = "false"

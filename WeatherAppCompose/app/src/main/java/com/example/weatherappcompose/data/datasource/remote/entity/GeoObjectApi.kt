@@ -4,10 +4,10 @@ import com.example.weatherappcompose.domain.model.Fact
 import com.example.weatherappcompose.domain.model.GeoObject
 
 data class GeoObjectApi(
-    val district: LocationItemApi,
-    val locality: LocationItemApi,
-    val province: LocationItemApi,
-    val country: LocationItemApi,
+    val district: LocationItemApi?,
+    val locality: LocationItemApi?,
+    val province: LocationItemApi?,
+    val country: LocationItemApi?,
 )
 
 fun GeoObjectApi.toModel(): GeoObject {
