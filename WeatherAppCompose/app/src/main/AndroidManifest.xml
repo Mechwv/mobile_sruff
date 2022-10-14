@@ -4,10 +4,12 @@
     package="com.example.weatherappcompose">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_ACCESS_FINE_LOCATION" />
 
     <application
         android:networkSecurityConfig="@xml/network_security_config"
-        android:allowBackup="true"
+            android:allowBackup="true"
         android:name="com.example.weatherappcompose.BaseApplication"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

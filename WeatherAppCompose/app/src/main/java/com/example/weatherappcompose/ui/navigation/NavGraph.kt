@@ -7,13 +7,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.weatherappcompose.ui.screens.home.HomeScreen
 import com.example.weatherappcompose.ui.screens.settings.SettingsScreen
+import com.google.android.gms.location.FusedLocationProviderClient
 
 
 @Composable
 fun NavGraph(
     navController: NavHostController,
     paddings: PaddingValues,
-    setFabOnClick: (() -> Unit) -> Unit
+    setFabOnClick: (() -> Unit) -> Unit,
 ) {
     NavHost(
         navController = navController,

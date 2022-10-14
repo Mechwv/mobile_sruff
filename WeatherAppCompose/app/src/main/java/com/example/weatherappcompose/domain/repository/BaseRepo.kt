@@ -1,5 +1,6 @@
 package com.example.weatherappcompose.domain.repository
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -27,8 +28,9 @@ abstract class BaseRepo() {
                     // In case of success response we
                     // are returning Resource.Success object
                     // by passing our data in it.
+                    Log.e("RETROFIT", response.body()!!.toString())
                     Resource.Success(data = response.body()!!)
-                } else {
+                                    } else {
                     // parsing api's own custom json error
                     // response in ExampleErrorResponse pojo
 //                    val errorResponse: ExampleErrorResponse? =

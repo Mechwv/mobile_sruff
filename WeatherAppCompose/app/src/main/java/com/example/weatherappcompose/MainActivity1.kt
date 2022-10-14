@@ -9,6 +9,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,6 +24,8 @@ import com.example.weatherappcompose.ui.navigation.NavGraph
 import com.example.weatherappcompose.ui.navigation.Screen
 import com.example.weatherappcompose.ui.screens.home.view.HomeTopBar
 import com.example.weatherappcompose.ui.theme.WeatherAppComposeTheme
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -33,10 +36,13 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 @AndroidEntryPoint
 class MainActivity1 : ComponentActivity() {
 
+
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
         setContent {
             WeatherAppComposeTheme {
                 val navController = rememberNavController()
@@ -108,4 +114,5 @@ class MainActivity1 : ComponentActivity() {
             }
         }
     }
+
 }
