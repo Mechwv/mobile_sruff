@@ -2,7 +2,9 @@ package com.example.weatherappcompose.ui.screens.home
 
 import android.app.Application
 import android.location.Location
+import android.location.LocationRequest
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherappcompose.data.datasource.remote.entity.toModel
@@ -10,6 +12,9 @@ import com.example.weatherappcompose.domain.repository.Resource
 import com.example.weatherappcompose.domain.usecase.weather.GetWeatherUseCase
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.CancellationToken
+import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.gms.tasks.OnTokenCanceledListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -41,10 +46,29 @@ class HomeViewModel @Inject constructor(
         _state.value = HomeViewState(true, null)
 
         var currloc: Location? = null
+        fusedLocationClient.locationAvailability.addOnCompleteListener{
+            Log.e("DRISN9", it.result.toString())
+        }
+
+//        fusedLocationClient.getCurrentLocation(LocationRequest.QUALITY_HIGH_ACCURACY, object : CancellationToken() {
+//            override fun onCanceledRequested(p0: OnTokenCanceledListener) = CancellationTokenSource().token
+//
+//            override fun isCancellationRequested() = false
+//        })
         fusedLocationClient.lastLocation
             .addOnCompleteListener { task ->
-                Log.e("TASK", task.result.toString())
+//                Log.e("TASK", task.result.toString())
                 currloc = task.result
+                if (currloc == null) {
+                    fusedLocationClient.getCurrentLocation(LocationRequest.QUALITY_HIGH_ACCURACY, object : CancellationToken() {
+                        override fun onCanceledRequested(p0: OnTokenCanceledListener) =
+                            CancellationTokenSource().token
+
+                        override fun isCancellationRequested() = false
+                    }).addOnCompleteListener {
+                        currloc = task.result
+                    }
+                }
                 viewModelScope.launch {
                     val weather = weatherUseCase(
                         lat = currloc?.latitude ?: ANTARCTICA_LAT,

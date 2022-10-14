@@ -72,7 +72,6 @@ dependencies {
 
     implementation("androidx.activity:activity-compose:1.3.1")
     implementation("androidx.compose.material:material:${Deps.compose_version}")
-    implementation("com.google.android.gms:play-services-location:18.0.0")
     debugImplementation("androidx.compose.ui:ui-tooling:${Deps.compose_version}")
     debugImplementation("androidx.compose.ui:ui-test-manifest:${Deps.compose_version}")
 
@@ -138,4 +137,5 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.0.0")
     implementation("io.coil-kt:coil-svg:2.0.0")
     implementation("com.google.accompanist:accompanist-permissions:0.21.1-beta")
+    implementation("com.google.android.gms:play-services-location:18.0.0")
 }
