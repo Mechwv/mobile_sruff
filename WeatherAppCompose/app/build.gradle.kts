@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.weatherappcompose"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 32
         versionCode = 1
         versionName = "1.0"
@@ -134,4 +134,6 @@ dependencies {
     //I WILL UNDERSTAND THIS LATER
     implementation("com.github.JamalMulla:ComposePrefs3:1.0.2") // Current is 1.0.2
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("io.coil-kt:coil-compose:2.0.0")
+    implementation("io.coil-kt:coil-svg:2.0.0")
 }

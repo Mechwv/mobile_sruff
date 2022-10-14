@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
 
             _state.value = HomeViewState(true, null)
 
-            val weather = weatherUseCase(lat = MOSCOW_LAT, long = MOSCOW_LONG, limit = 5)
+            val weather = weatherUseCase(lat = MOSCOW_LAT, long = MOSCOW_LONG, limit = 7)
 
             if (weather is Resource.Success) {
                 _state.value = HomeViewState(false, weather.data!!.toModel())
