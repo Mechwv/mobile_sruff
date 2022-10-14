@@ -37,7 +37,9 @@ fun HomeScreen(
 
     ) {
     LaunchedEffect(Unit) {
-        setFabOnClick { viewModel.fetchWeather() }
+        setFabOnClick {
+            viewModel.fetchWeather()
+        }
     }
 
     val viewState by viewModel.state.collectAsState()
@@ -52,9 +54,8 @@ fun HomeScreen(
             .padding(padding)
             .padding(10.dp, 0.dp)
     ) {
-        SinglePermission()
-
         viewState.weatherLocation?.let {
+
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 verticalArrangement = Arrangement.spacedBy(6.dp),
@@ -108,47 +109,6 @@ fun map(source: String): String {
         "thunderstorm-with-hail" -> "гроза с градом"
         else -> "rofl"
     }
-}
-
-@SuppressLint("PermissionLaunchedDuringComposition")
-@OptIn(ExperimentalPermissionsApi::class)
-@Composable
-fun SinglePermission(){
-
-    val permissionState =
-        rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION)
-    val lifecycleOwner = LocalLifecycleOwner.current
-
-    DisposableEffect(key1 = lifecycleOwner, effect = {
-        val observer = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_START -> {
-                    permissionState.launchPermissionRequest()
-                }
-            }
-        }
-        lifecycleOwner.lifecycle.addObserver(observer)
-
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-        }
-    })
-
-//    when {
-//        permissionState.hasPermission -> {
-//            Text(text = "Location permission is granted")
-//        }
-//        permissionState.shouldShowRationale -> {
-//            Column {
-//                Text(text = "Location permission is required by this app")
-//            }
-//        }
-//        !permissionState.hasPermission && !permissionState.shouldShowRationale -> {
-//            Text(text = "Permission fully denied. Go to settings to enable")
-//        }
-//    }
-
-
 }
 
 
